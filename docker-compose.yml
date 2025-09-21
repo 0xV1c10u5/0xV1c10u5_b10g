@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  nextjs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nextjs-app
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    command: npm run dev
+
+  # Uncomment this if you also need a database
+  # db:
+  #   image: postgres:15-alpine
+  #   restart: always
+  #   environment:
+  #     POSTGRES_USER: nextjs
+  #     POSTGRES_PASSWORD: nextjs
+  #     POSTGRES_DB: nextjs_db
+  #   ports:
+  #     - "5432:5432"
+
